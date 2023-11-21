@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"io"
 	"net/http"
-	"strings"
 
 	"github.com/gofiber/fiber/v2/log"
 )
@@ -32,11 +30,19 @@ func Fetch(path string) string {
 	return string(body)
 }
 
-func GetConversationMessages(conversationId string) []Message {
-	body := Fetch(TickerPath + "?" + ApiKey + "&ticker=" + strings.ToUpper(conversationId))
+func GetConversationMessages(conversationId string) ConversationResult {
+	body := ConversationResult{
+		Results: []Message{
+			{
+				Content: "Hi Cole",
+				UserId:  "a",
+			},
+			{
+				Content: "Hi Meghan",
+				UserId:  "b",
+			},
+		},
+	}
 
-	data := ConversationResult{}
-	json.Unmarshal([]byte(string(body)), &data)
-
-	return data.Results
+	return body
 }

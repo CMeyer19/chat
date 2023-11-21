@@ -17,18 +17,18 @@ func main() {
 		messages := GetConversationMessages("a")
 
 		return c.Render("results", fiber.Map{
-			"Results": messages,
+			"Results": messages.Results,
 		})
 	})
 
-	app.Get("api/messages", func(c *fiber.Ctx) error {
-		messages := GetConversationMessages("a")
+	// app.Get("api/messages", func(c *fiber.Ctx) error {
+	// 	messages := GetConversationMessages("a")
 
-		return c.JSON(&fiber.Map{
-			"Status":  true,
-			"Results": messages,
-		})
-	})
+	// 	return c.JSON(&fiber.Map{
+	// 		"Status":  true,
+	// 		"Results": messages,
+	// 	})
+	// })
 
 	app.Listen(":3000")
 }
