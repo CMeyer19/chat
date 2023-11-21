@@ -13,22 +13,20 @@ func main() {
 		return c.Render("index", fiber.Map{})
 	})
 
-	app.Get("/search", func(c *fiber.Ctx) error {
-		ticker := c.Query("ticker")
-		results := SearchTicker(ticker)
+	app.Get("/messages", func(c *fiber.Ctx) error {
+		messages := GetConversationMessages("a")
 
 		return c.Render("results", fiber.Map{
-			"Results": results,
+			"Results": messages,
 		})
 	})
 
-	app.Get("/values/:ticker", func(c *fiber.Ctx) error {
-		ticker := c.Params("ticker")
-		values := GetDailyValues(ticker)
+	app.Get("api/messages", func(c *fiber.Ctx) error {
+		messages := GetConversationMessages("a")
 
-		return c.Render("values", fiber.Map{
-			"Ticker": ticker,
-			"Values": values,
+		return c.JSON(&fiber.Map{
+			"Status":  true,
+			"Results": messages,
 		})
 	})
 
