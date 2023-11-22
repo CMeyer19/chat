@@ -1,6 +1,6 @@
-# Run project
-go run .
+# Commands:
+ - Run project: "go run ."
+ - Update all Golang dependecies: "go get -u"
 
-# Update all go dependecies
-go get -u
-
+# Links:
+- [Example Repo](https://github.com/gofiber/recipes/blob/master/websocket-chat/main.go)
