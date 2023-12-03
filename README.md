@@ -4,3 +4,4 @@
 
 # Links:
 - [Example Repo](https://github.com/gofiber/recipes/blob/master/websocket-chat/main.go)
+- [HTMX Websockets](https://htmx.org/extensions/web-sockets/)
