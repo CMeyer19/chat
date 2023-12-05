@@ -1,27 +1,32 @@
 <html>
-<head>
-  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
-  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
-</head>
+  <head>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+  </head>
 
-<body>
-<main class="container mx-auto w-sm flex flex-col h-full">
-  <div id="messages" class="flex-auto"></div>
+  <body>
+    <main
+      hx-ext="ws"
+      hx-ws="connect:/ws/123?v=1.0"
+      class="container mx-auto w-sm flex flex-col h-full"
+    >
+      <div id="messages" class="flex-auto"></div>
+      <div id="notifications">Notifications</div>
 
-  <!-- New -->
-  <div hx-ext="ws" hx-ws="connect:/ws/123?v=1.0">
-    <form id="form" ws-send>
-      <input
-        class="rounded-lg mx-auto w-full p-4 outline-none shadow-lg font-size-5 font-semibold flex-initial"
-        type="text"
-        name="chat_message"
-        hx-get="/messages"
-        hx-trigger="load"
-        hx-target="#messages"
-      />
-    </form>
-  </div>
-</main>
-</body>
+      <!-- New -->
+      <form id="form" ws-send>
+        <input
+          class="rounded-lg mx-auto w-full p-4 outline-none shadow-lg font-size-5 font-semibold flex-initial"
+          type="text"
+          name="message"
+          hx-get="/messages"
+          hx-trigger="load"
+          hx-target="#messages"
+        />
+      </form>
+
+      <div hx-swap-oob="beforeend:#notifications"><p class="text-white">New Message</p></div>
+    </main>
+  </body>
 </html>
